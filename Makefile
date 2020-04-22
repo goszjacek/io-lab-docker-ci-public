@@ -39,11 +39,16 @@ image:
 		--build-arg SCHEMA_BUILD_DATE="$(SCHEMA_BUILD_DATE)" \
 		--build-arg SCHEMA_BUILD_VERSION="$(SCHEMA_BUILD_VERSION)" \
 		--build-arg SCHEMA_CMD="$(SCHEMA_CMD)" \
+		-t $(SCHEMA_NAME):latest .
 	
   # TODO: last part of this command that tags just built image with a specyfic tag
+	docker image tag goszjacek/io-lab-docker-ci-public:latest goszjacek/io-lab-docker-ci-public:ca2de2a
+
 	
 push: image
 	# TODO: two commands, first pushes the latest image, second pushes the image tagged with specyfic tag
+	docker push goszjacek/io-lab-docker-ci-public:latest
+	docker push goszjacek/io-lab-docker-ci-public:ca2de2a
 	
 clean:
 
